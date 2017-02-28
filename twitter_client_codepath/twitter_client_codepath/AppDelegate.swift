@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        if User.currentUser != nil {
+            
+        }
+        
         return true
     }
 
@@ -42,17 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        let client = TwitterClient.sharedInstance
-        
-        client?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) -> Void in
-            
-            print("I got the access token!")
-            client.homeTimeLine
-        }) { (error: Error?) -> Void in
-            print("error: \(error?.localizedDescription)")
-        }
-        
+        TwitterClient.sharedInstance?.handleOpenUrl(url: url)
         return true
     }
 }

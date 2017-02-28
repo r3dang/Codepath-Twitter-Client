@@ -25,4 +25,11 @@ class User: NSObject {
         tagline = dictionary["description"] as? NSString
 
     }
+    
+    class var currentUser: User? {
+        get {
+            return nil
+        }
+    }
+    
 }

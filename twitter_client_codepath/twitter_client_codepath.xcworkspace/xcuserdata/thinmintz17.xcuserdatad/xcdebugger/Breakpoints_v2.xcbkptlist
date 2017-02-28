@@ -9,46 +9,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "twitter_client_codepath/AppDelegate.swift"
-            timestampString = "509952047.649252"
+            filePath = "twitter_client_codepath/TwitterClient.swift"
+            timestampString = "509958053.885742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "application(_:open:options:)"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "homeTimeLine(success:failure:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "twitter_client_codepath.AppDelegate.(application (__ObjC.UIApplication, open : Foundation.URL, options : Swift.Dictionary&lt;__C.UIApplicationOpenURLOptionsKey, Any&gt;) -&gt; Swift.Bool).(closure #1)"
-                  moduleName = "twitter_client_codepath"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/thinmintz17/Projects/Codepath-Twitter-Client/twitter_client_codepath/twitter_client_codepath/AppDelegate.swift"
-                  timestampString = "509955754.579828"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "226">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "twitter_client_codepath.AppDelegate.(application (__ObjC.UIApplication, open : Foundation.URL, options : Swift.Dictionary&lt;__C.UIApplicationOpenURLOptionsKey, Any&gt;) -&gt; Swift.Bool).(closure #1).(closure #1)"
-                  moduleName = "twitter_client_codepath"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/thinmintz17/Projects/Codepath-Twitter-Client/twitter_client_codepath/twitter_client_codepath/AppDelegate.swift"
-                  timestampString = "509955754.583145"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "23">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
