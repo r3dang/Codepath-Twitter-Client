@@ -8,7 +8,6 @@
 
 import UIKit
 import BDBOAuth1Manager
-import AFNetworking
 
 class LoginViewController: UIViewController {
 
@@ -24,14 +23,19 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginToTwitter(_ sender: Any) {
-        let apiURL = URL(string: "https://api.twitter.com")
-        let twitterClient = BDBOAuth1SessionManager(baseURL: apiURL, consumerKey: "5wZOeonL2PrcTtKzvma4SFoC1", consumerSecret: "qTq09tSvMpCr44dI9uwnzOUiLTU1pU1NTVILrJHBuRgzXo5oDz")
+        let twitterClient = TwitterClient.sharedInstance
         twitterClient?.deauthorize()
-        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: nil, scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
-            print("I got a token!")
-        }) { (error: NSError!) -> Void in
-            print("error: \(error.localizedDescription)")
-        }
+        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterClient://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
+            print("Got the token")
+            
+            let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\((requestToken?.token)!)")!
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: { (Bool) in
+                // do nothing
+            })
+            
+        }, failure: { (error: Error?) in
+            print(error!.localizedDescription)
+        })
     }
 
     /*
