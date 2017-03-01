@@ -8,16 +8,19 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var tweets: [Tweet]!
-    
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        tableView.estimatedRowHeight = 125
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) -> () in
             self.tweets = tweets
-            for tweet in tweets {
-                print(tweet.text!)
-            }
+            self.tableView.reloadData()
         }, failure: { (error: Error) -> () in
             print(error.localizedDescription)
         })
@@ -29,7 +32,24 @@ class TweetsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func onLogoutButton(_ sender: Any) {
+        TwitterClient.sharedInstance?.logout()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let tweets = tweets {
+            return tweets.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        cell.tweet = self.tweets![indexPath.row]
+        cell.selectionStyle = .none
+        return cell
+    }
     /*
     // MARK: - Navigation
 
