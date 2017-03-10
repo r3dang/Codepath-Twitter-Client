@@ -88,6 +88,18 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func tweet(status: String, success: @escaping (String) -> (), failure: @escaping (Error) -> ()){
+        let tweetText = status.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        post("1.1/statuses/update.json?status=\(tweetText))", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            
+            success("Done")
+        }) { (task: URLSessionDataTask?, error: Error) in
+            print("error: \(error.localizedDescription)")
+            failure(error)
+        }
+    }
+    
     func handleOpenUrl(url: URL) {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) -> Void in

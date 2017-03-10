@@ -50,14 +50,29 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.selectionStyle = .none
         return cell
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "toDetail") {
+            let cell = sender as! TweetCell
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets![(indexPath!.row)]
+            
+            let detailedViewController = segue.destination as! TweetDetailedViewController
+            detailedViewController.tweet = tweet
+        }
+        else if (segue.identifier == "profile") {
+            let cellButton = sender as! UIButton
+            let cell = cellButton.superview?.superview as! TweetCell
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets![(indexPath!.row)]
+            
+            let navController = segue.destination as! UINavigationController
+            let profileViewController = navController.viewControllers[0] as! ProfileViewController
+            profileViewController.tweet = tweet
+        }
     }
-    */
 
 }

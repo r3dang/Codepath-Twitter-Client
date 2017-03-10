@@ -17,6 +17,8 @@ class Tweet: NSObject {
     var username: String?
     var profileUrl: URL?
     var id: String?
+    var followersCount: Int = 0;
+    var followingCount: Int = 0;
     
     init(dictionary: NSDictionary) {
         text = dictionary["text"] as? String
@@ -33,6 +35,9 @@ class Tweet: NSObject {
         
         profileUrl = URL(string: (user!["profile_image_url_https"] as? String)!)
         id = user?["screen_name"] as? String
+        
+        followersCount = (user!["followers_count"] as? Int) ?? 0
+        followingCount = (user!["following"] as? Int) ?? 0
     }
     
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet] {
